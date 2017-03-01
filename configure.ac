@@ -1,0 +1,12 @@
+AC_INIT(configure.ac)
+
+AM_CONFIG_HEADER(config.h)
+
+AC_DEFINE(LIBOPENIKE_VERSION, "0.7", [Version])
+AM_INIT_AUTOMAKE(libopenikev2, 0.7)
+
+AC_LANG_CPLUSPLUS
+AC_PROG_CXX
+AM_PROG_LIBTOOL
+
+AC_OUTPUT(Makefile src/Makefile)
