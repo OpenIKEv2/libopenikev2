@@ -389,7 +389,6 @@ namespace openikev2 {
             return IKE_SA_ACTION_CONTINUE;
         }
         else {
-            cout << "******** IKESA::close();" << endl;
             return IKE_SA_ACTION_DELETE_IKE_SA;
         }
     }
@@ -727,15 +726,6 @@ namespace openikev2 {
 
 	// sends the message to the peer
         this->sendMessage( message, "Send: IKE_SA_INIT request" );
-
-        struct timeval t_ini;
-        double secs;
-
-        gettimeofday(&t_ini, NULL);
-
-        secs = (double)(t_ini.tv_sec + (double) t_ini.tv_usec/1000000);
-
-        printf("\n========== ini [%.16g] milisegundos\n", secs * 1000.0);
 
         // Store the IKE_SA_INIT request
         this->ike_sa_init_req = this->last_sent_request->clone();
@@ -1500,17 +1490,6 @@ namespace openikev2 {
         this->setState( STATE_IKE_SA_ESTABLISHED );
 
         EventBus::getInstance().sendBusEvent( auto_ptr<BusEvent> ( new BusEventIkeSa( BusEventIkeSa::IKE_SA_ESTABLISHED, *this ) ) );
-
-
-        struct timeval t_end;
-        double secs;
-
-        gettimeofday(&t_end, NULL);
-
-        secs = (double)(t_end.tv_sec + (double) t_end.tv_usec/1000000);
-
-        printf("\n========== fin [%.16g] milisegundos\n", secs * 1000.0);
-
 
         return MESSAGE_ACTION_COMMIT;
     }
@@ -2937,10 +2916,8 @@ namespace openikev2 {
                 return IKE_SA_ACTION_CONTINUE;
 
             // else if action is close IKE_SA, then return and deletes the IKE_SA
-            else if ( action == MESSAGE_ACTION_DELETE_IKE_SA ){
-                cout << "******** el procesamiento de un mensaje produjo la accion delete IKE_SA" << endl;
-		return IKE_SA_ACTION_DELETE_IKE_SA;
-	    }
+            else if ( action == MESSAGE_ACTION_DELETE_IKE_SA )
+        		return IKE_SA_ACTION_DELETE_IKE_SA;
             // IF ACTION  is CONTINUE, then do the following
 
             // If we are initiators
