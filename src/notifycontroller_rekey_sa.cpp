@@ -1,7 +1,7 @@
 /***************************************************************************
 *   Copyright (C) 2005 by                                                 *
-*   Pedro J. Fernandez Ruiz    pedroj.fernandez@dif.um.es                 *
-*   Alejandro Perez Mendez     alejandro_perez@dif.um.es                  *
+*   Pedro J. Fernandez Ruiz    pedroj@um.es                               *
+*   Alejandro Perez Mendez     alex@um.es                                 *
 *                                                                         *
 *   This library is free software; you can redistribute it and/or         *
 *   modify it under the terms of the GNU Lesser General Public            *
@@ -58,7 +58,7 @@ namespace openikev2 {
         if ( message.exchange_type != Message::CREATE_CHILD_SA || child_sa == NULL )
             return;
 
-        // If the CHILD_SA is rekeying another one, 
+        // If the CHILD_SA is rekeying another one,
         if ( child_sa->rekeyed_spi != 0 ) {
             ChildSa* rekeyed_child_sa = ike_sa.child_sa_collection->getChildSa( child_sa->rekeyed_spi );
             assert ( rekeyed_child_sa != NULL );

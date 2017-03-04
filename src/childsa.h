@@ -1,7 +1,7 @@
 /***************************************************************************
 *   Copyright (C) 2005 by                                                 *
-*   Pedro J. Fernandez Ruiz    pedroj.fernandez@dif.um.es                 *
-*   Alejandro Perez Mendez     alejandro_perez@dif.um.es                  *
+*   Pedro J. Fernandez Ruiz    pedroj@um.es                               *
+*   Alejandro Perez Mendez     alex@um.es                                 *
 *                                                                         *
 *   This library is free software; you can redistribute it and/or         *
 *   modify it under the terms of the GNU Lesser General Public            *
@@ -42,7 +42,7 @@ namespace openikev2 {
 
     /**
         This class represents a CHILD_SA
-        @author Pedro J. Fernandez Ruiz, Alejandro Perez Mendez <pedroj.fernandez@dif.um.es, alejandro_perez@dif.um.es>
+        @author Pedro J. Fernandez Ruiz, Alejandro Perez Mendez <pedroj@um.es, alex@um.es>
     */
     class ChildSa: public Printable {
 
@@ -100,9 +100,9 @@ namespace openikev2 {
              * @param ipsec_protocol Indicates the IPSEC protocol (AH or ESP) for this ChildSa
              * @param mode Indicates the IPSEC mode (TRANSPORT or TUNNEL) for this ChildSa
              * @param child_sa_initiator Indicates if we are the initiators of this ChildSa
-             */ 
+             */
             ChildSa( uint32_t inbound_spi, Enums::PROTOCOL_ID ipsec_protocol, bool child_sa_initiator );
-            
+
             /**
              * Creates a new ChildSa object based on a ChildSaRequest template
              * @param inbound_spi Indicates the inbound SPI value for this ChildSa
@@ -174,7 +174,7 @@ namespace openikev2 {
              * @return The current state
              */
             virtual CHILD_SA_STATE getState() const;
-            
+
             /**
              * Gets the string to be shown in the log
              * @return The ChildSa ID

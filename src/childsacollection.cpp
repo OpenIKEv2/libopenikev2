@@ -1,7 +1,7 @@
 /***************************************************************************
  *   Copyright (C) 2005 by                                                 *
- *   Alejandro Perez Mendez     alejandro_perez@dif.um.es                  *
- *   Pedro J. Fernandez Ruiz    pedroj.fernandez@dif.um.es                 *
+ *   Alejandro Perez Mendez     alex@um.es                                 *
+ *   Pedro J. Fernandez Ruiz    pedroj@um.es                               *
  *                                                                         *
  *   This library is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU Lesser General Public            *
@@ -89,7 +89,7 @@ namespace openikev2 {
         map<uint32_t, ChildSa*>::iterator it = this->child_sa_collection_inbound.find( spi );
         assert ( it != this->child_sa_collection_inbound.end() );
         ChildSa* child_sa = it->second;
-        uint32_t outbound_spi = child_sa->outbound_spi; 
+        uint32_t outbound_spi = child_sa->outbound_spi;
         this->child_sa_collection_inbound.erase( it );
 
         it = this->child_sa_collection_outbound.find( outbound_spi );

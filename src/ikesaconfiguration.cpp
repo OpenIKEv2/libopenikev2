@@ -1,7 +1,7 @@
 /***************************************************************************
 *   Copyright (C) 2005 by                                                 *
-*   Pedro J. Fernandez Ruiz    pedroj.fernandez@dif.um.es                 *
-*   Alejandro Perez Mendez     alejandro_perez@dif.um.es                  *
+*   Pedro J. Fernandez Ruiz    pedroj@um.es                               *
+*   Alejandro Perez Mendez     alex@um.es                                 *
 *                                                                         *
 *   This library is free software; you can redistribute it and/or         *
 *   modify it under the terms of the GNU Lesser General Public            *
@@ -76,7 +76,7 @@ namespace openikev2 {
         oss << Printable::generateTabs( tabs + 1 ) << "}\n";
 
         oss << Printable::generateTabs( tabs + 1 ) << "max_idle_time=[" << this->max_idle_time << "]\n";
-        
+
         oss << Printable::generateTabs( tabs + 1 ) << "retransmition_time=[" << this->retransmition_time << "]\n";
 
         oss << Printable::generateTabs( tabs + 1 ) << "retransmition_factor=[" << this->retransmition_factor << "]\n";

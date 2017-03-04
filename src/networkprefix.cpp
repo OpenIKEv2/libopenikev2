@@ -1,7 +1,7 @@
 /***************************************************************************
  *   Copyright (C) 2005 by                                                 *
- *   Alejandro Perez Mendez     alejandro_perez@dif.um.es                  *
- *   Pedro J. Fernandez Ruiz    pedroj.fernandez@dif.um.es                 *
+ *   Alejandro Perez Mendez     alex@um.es                                 *
+ *   Pedro J. Fernandez Ruiz    pedroj@um.es                               *
  *                                                                         *
  *   This library is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU Lesser General Public            *
@@ -29,7 +29,7 @@ namespace openikev2 {
     NetworkPrefix::NetworkPrefix( auto_ptr< IpAddress > network_address, uint16_t prefixlen ) {
         if (prefixlen > network_address->getAddressSize() * 8 )
             throw Exception("Prefixlen is greater than address size. Prefixlen=" + intToString(prefixlen) + " Address=" + network_address->toString() );
-            
+
         this->network_address = network_address;
         this->prefixlen = prefixlen;
 

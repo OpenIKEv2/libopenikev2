@@ -1,7 +1,7 @@
 /***************************************************************************
 *   Copyright (C) 2005 by                                                 *
-*   Pedro J. Fernandez Ruiz    pedroj.fernandez@dif.um.es                 *
-*   Alejandro Perez Mendez     alejandro_perez@dif.um.es                  *
+*   Pedro J. Fernandez Ruiz    pedroj@um.es                               *
+*   Alejandro Perez Mendez     alex@um.es                                 *
 *                                                                         *
 *   This library is free software; you can redistribute it and/or         *
 *   modify it under the terms of the GNU Lesser General Public            *
@@ -31,7 +31,7 @@ namespace openikev2 {
 
     /**
         This class represents a per-peer configuration
-        @author Alejandro Perez Mendez, Pedro J. Fernandez Ruiz <alejandro_perez@dif.um.es, pedroj.fernandez@dif.um.es>
+        @author Alejandro Perez Mendez, Pedro J. Fernandez Ruiz <alex@um.es, pedroj@um.es>
     */
     class PeerConfiguration : public Printable {
             friend class Configuration;
@@ -61,7 +61,7 @@ namespace openikev2 {
              * @return The ChildSaConfiguration for this PeerConfiguration
              */
             virtual ChildSaConfiguration& getChildSaConfiguration() const;
-            
+
             /**
              * Sets the IkeSaConfiguration
              * @param  ike_sa_configuration IkeSaConfiguration
@@ -73,13 +73,13 @@ namespace openikev2 {
              * @param  ike_sa_configuration ChildSaConfiguration
              */
             virtual void setChildSaConfiguration( auto_ptr<ChildSaConfiguration> child_sa_configuration);
-            
+
             /**
              * Sets the role
              * @param role Role
              */
             virtual void setRole(Enums::ROLE_ID role);
-            
+
             /**
              * Gets the role
              * @return The Role
@@ -104,20 +104,20 @@ namespace openikev2 {
              * @return TRUE if has the IP Address. FALSE otherwise
              */
             virtual bool hasIpAddress( const IpAddress& ip_address ) const ;
-            
+
             /**
              * Indicates if this peer configuration contains an Network Prefix
              * @param network_prefix Network Prefix
              * @return TRUE if has the Network Prefix. FALSE otherwise.
              */
             virtual bool hasNetworkPrefix (const NetworkPrefix& network_prefix) const;
-            
+
             /**
              * Obtains the number of registered network prefixes
              * @return The nunber of registered network prefixes
              */
             virtual uint16_t getNetworkPrefixCount() const;
-            
+
             /**
              * Returns a new PeerConfiguration object as a clone of this
              * @return A clone of this

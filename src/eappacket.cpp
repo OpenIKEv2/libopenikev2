@@ -1,7 +1,7 @@
 /***************************************************************************
  *   Copyright (C) 2005 by                                                 *
- *   Alejandro Perez Mendez     alejandro_perez@dif.um.es                  *
- *   Pedro J. Fernandez Ruiz    pedroj.fernandez@dif.um.es                 *
+ *   Alejandro Perez Mendez     alex@um.es                                 *
+ *   Pedro J. Fernandez Ruiz    pedroj@um.es                               *
  *                                                                         *
  *   This library is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU Lesser General Public            *
@@ -60,7 +60,7 @@ namespace openikev2
 
         // reads the eap message length
         uint16_t eap_packet_len = byte_buffer.readInt16();
-        
+
         // Check payload length
         if ( ( code == EAP_CODE_REQUEST || code == EAP_CODE_RESPONSE ) && eap_packet_len <= 5 )
             throw ParsingException( "This EAP packet must have more than 5 bytes " );

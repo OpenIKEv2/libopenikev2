@@ -1,7 +1,7 @@
 /***************************************************************************
 *   Copyright (C) 2005 by                                                 *
-*   Pedro J. Fernandez Ruiz    pedroj.fernandez@dif.um.es                 *
-*   Alejandro Perez Mendez     alejandro_perez@dif.um.es                  *
+*   Pedro J. Fernandez Ruiz    pedroj@um.es                               *
+*   Alejandro Perez Mendez     alex@um.es                                 *
 *                                                                         *
 *   This library is free software; you can redistribute it and/or         *
 *   modify it under the terms of the GNU Lesser General Public            *
@@ -140,10 +140,10 @@ namespace openikev2 {
             this->start_port = port;
             this->end_port = port;
         }
-	
+
         NetworkPrefix prefix ( address.clone(), prefixlen );
 
-        this->start_addr = prefix.getNetworkAddress().getBytes();	
+        this->start_addr = prefix.getNetworkAddress().getBytes();
         this->end_addr = prefix.getBroadCastAddress()->getBytes();
 
     }

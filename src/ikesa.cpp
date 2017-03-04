@@ -1,7 +1,7 @@
 /***************************************************************************
 *   Copyright (C) 2005 by                                                 *
-*   Pedro J. Fernandez Ruiz    pedroj.fernandez@dif.um.es                 *
-*   Alejandro Perez Mendez     alejandro_perez@dif.um.es                  *
+*   Pedro J. Fernandez Ruiz    pedroj@um.es                               *
+*   Alejandro Perez Mendez     alex@um.es                                 *
 *                                                                         *
 *   This library is free software; you can redistribute it and/or         *
 *   modify it under the terms of the GNU Lesser General Public            *
@@ -108,15 +108,15 @@ namespace openikev2 {
 
        			StringAttribute* string_attr = general_conf->attributemap->getAttribute<StringAttribute>( "home_address" );
     			if (string_attr!=NULL ){
-				Log::writeLockedMessage( this->getLogId(), "1.....", Log::LOG_THRD, true ); 
+				Log::writeLockedMessage( this->getLogId(), "1.....", Log::LOG_THRD, true );
                			this->home_address = NetworkController::getSocketAddress(string_attr->value,500);
-				Log::writeLockedMessage( this->getLogId(), "2.....", Log::LOG_THRD, true );    						
+				Log::writeLockedMessage( this->getLogId(), "2.....", Log::LOG_THRD, true );
     			    	//auto_ptr<IpAddress> coa (NetworkController::getCurrentCoA());
 			    	//NetworkController::getSocketAddress(coa,500);
-    			    	this->care_of_address = this->my_addr->clone(); 
+    			    	this->care_of_address = this->my_addr->clone();
 				Log::writeLockedMessage( this->getLogId(), "3.....", Log::LOG_THRD, true );
                 	}
-    		}    	
+    		}
     	}
 
 
@@ -459,7 +459,7 @@ namespace openikev2 {
 		is_ha = is_ha_attr->value;
 
 	if ( this->mobility ) {
-             
+
 
 		if (exchange_type == Message::IKE_SA_INIT || ((exchange_type == Message::IKE_AUTH) && (message_type == Message::REQUEST)) ){
 			// Special case for IKE_SA_INIT and IKE_AUTH, no change the HoA to CoA
@@ -550,14 +550,14 @@ namespace openikev2 {
             // If exists notify controller for that notify type
             if ( notify_controller != NULL ) {
         Log::writeLockedMessage( this->getLogId(), "***** 13 ", Log::LOG_ERRO, true );
-	
+
 		if (notify == NULL)
         		Log::writeLockedMessage( this->getLogId(), "***** 13 A ", Log::LOG_ERRO, true );
 		else if (child_sa == NULL)
-			Log::writeLockedMessage( this->getLogId(), "***** 13 B ", Log::LOG_ERRO, true );	
+			Log::writeLockedMessage( this->getLogId(), "***** 13 B ", Log::LOG_ERRO, true );
 
-			Log::writeLockedMessage( this->getLogId(), "***** 13 C  "+ message.toStringTab(0), Log::LOG_ERRO, true );	
-			Log::writeLockedMessage( this->getLogId(), "***** 13 D  "+ notify->toStringTab(0), Log::LOG_ERRO, true );	
+			Log::writeLockedMessage( this->getLogId(), "***** 13 C  "+ message.toStringTab(0), Log::LOG_ERRO, true );
+			Log::writeLockedMessage( this->getLogId(), "***** 13 D  "+ notify->toStringTab(0), Log::LOG_ERRO, true );
 
 
                 NOTIFY_ACTION action = notify_controller->processNotify( *notify, message, *this, child_sa );
@@ -591,7 +591,7 @@ namespace openikev2 {
     }
 
     void IkeSa::createChildSa( auto_ptr<ChildSa> child_sa ) {
-        
+
 	auto_ptr<GeneralConfiguration> general_conf = Configuration::getInstance().getGeneralConfiguration();
 
         BoolAttribute* is_ha_attr = general_conf->attributemap->getAttribute<BoolAttribute>( "is_ha" );
@@ -690,13 +690,13 @@ namespace openikev2 {
 
 		if (!is_ha){
 			// is MR
-		        Log::writeLockedMessage( this->getLogId(), "Changin CoA to Hoa for child sa creation (MR)", Log::LOG_ERRO, true ); 
+		        Log::writeLockedMessage( this->getLogId(), "Changin CoA to Hoa for child sa creation (MR)", Log::LOG_ERRO, true );
 	       		this->my_creating_child_sa.reset ( new ChildSa( IpsecController::getSpi(this->peer_addr->getIpAddress(),this->home_address->getIpAddress(),child_sa_request->ipsec_protocol), child_sa_request ) );
                         Log::writeLockedMessage( this->getLogId(), "Get SPI using HoA instead of CoA.", Log::LOG_WARN, true );
 
 		}
 		else {
-		        Log::writeLockedMessage( this->getLogId(), "Changin CoA to Hoa for child sa creation (HA)", Log::LOG_ERRO, true ); 
+		        Log::writeLockedMessage( this->getLogId(), "Changin CoA to Hoa for child sa creation (HA)", Log::LOG_ERRO, true );
 	        	this->my_creating_child_sa.reset ( new ChildSa( IpsecController::getSpi(this->peer_addr->getIpAddress(),this->my_addr->getIpAddress(),child_sa_request->ipsec_protocol), child_sa_request ) );
                         Log::writeLockedMessage( this->getLogId(), "The IKE_SA_INIT exchange can not be started by the HA using mobility.", Log::LOG_WARN, true );
 
@@ -707,7 +707,7 @@ namespace openikev2 {
         	this->my_creating_child_sa.reset ( new ChildSa( IpsecController::getSpi(this->peer_addr->getIpAddress(),this->my_addr->getIpAddress(),child_sa_request->ipsec_protocol), child_sa_request ) );
 
 	}
-	
+
 
         // Creates Message (IKE_SA_INIT request)
         auto_ptr<Message> message = this->createMessage( Message::IKE_SA_INIT, Message::REQUEST );
@@ -735,7 +735,7 @@ namespace openikev2 {
 
         secs = (double)(t_ini.tv_sec + (double) t_ini.tv_usec/1000000);
 
-        printf("\n========== ini [%.16g] milisegundos\n", secs * 1000.0); 
+        printf("\n========== ini [%.16g] milisegundos\n", secs * 1000.0);
 
         // Store the IKE_SA_INIT request
         this->ike_sa_init_req = this->last_sent_request->clone();
@@ -1023,7 +1023,7 @@ namespace openikev2 {
 		Log::writeLockedMessage( this->getLogId(), "DEBUG: Before creating Child_SA", Log::LOG_INFO, true );
 
         this->createChildSa( this->my_creating_child_sa );
-		
+
 		Log::writeLockedMessage( this->getLogId(), "DEBUG: After creating Child_SA", Log::LOG_INFO, true );
 
         this->setState( STATE_IKE_SA_ESTABLISHED );
@@ -1093,7 +1093,7 @@ namespace openikev2 {
 
 	// update policies, in case they have changed
 
-	IpsecController::updatePolicies(false);        
+	IpsecController::updatePolicies(false);
 
         Log::writeLockedMessage( this->getLogId(), "***** 2", Log::LOG_ERRO, true );
 
@@ -1108,7 +1108,7 @@ namespace openikev2 {
 	if ( proposal_sa != NULL )
 		peer_selected_ipsec_proto = proposal_sa->protocol_id;
 
-	
+
         // creates the CHILD_SA
         this->peer_creating_child_sa.reset( new ChildSa( IpsecController::getSpi(this->peer_addr->getIpAddress(),this->my_addr->getIpAddress(), peer_selected_ipsec_proto), peer_selected_ipsec_proto, false ) );
 
@@ -1265,7 +1265,7 @@ namespace openikev2 {
 	Enums::PROTOCOL_ID peer_selected_ipsec_proto = Enums::PROTO_NONE;
 	if ( proposal_sa != NULL )
 		peer_selected_ipsec_proto = proposal_sa->protocol_id;
-        
+
         // creates the new CHILD_SA
         this->peer_creating_child_sa.reset( new ChildSa( IpsecController::getSpi(this->peer_addr->getIpAddress(),this->my_addr->getIpAddress(), peer_selected_ipsec_proto), peer_selected_ipsec_proto, false ) );
 
@@ -1509,7 +1509,7 @@ namespace openikev2 {
 
         secs = (double)(t_end.tv_sec + (double) t_end.tv_usec/1000000);
 
-        printf("\n========== fin [%.16g] milisegundos\n", secs * 1000.0); 
+        printf("\n========== fin [%.16g] milisegundos\n", secs * 1000.0);
 
 
         return MESSAGE_ACTION_COMMIT;
@@ -1520,7 +1520,7 @@ namespace openikev2 {
         Log::writeMessage( this->getLogId(), "Recv: EAP_FINISH request", Log::LOG_MESG, true );
         Log::writeMessage( this->getLogId(), message.toStringTab( 1 ), Log::LOG_MESG, false );
         Log::release();
-        
+
 
         // process notification (N) and vendor (V) payloads (from the EAP_INIT request)
         NOTIFY_ACTION action = this->processNotifies( *this->eap_init_req, this->peer_creating_child_sa.get() );
@@ -1531,7 +1531,7 @@ namespace openikev2 {
         else if ( action == NOTIFY_ACTION_OMIT )
             return MESSAGE_ACTION_OMIT;
 
-	// get msk key from eap method	
+	// get msk key from eap method
 	this->getIkeSaConfiguration().getAuthenticator().processFinish();
 
         // process the authentication payload (AUTH)
@@ -1635,7 +1635,7 @@ namespace openikev2 {
 
     IkeSa::IKE_SA_ACTION IkeSa::createNewChildSaRequest( auto_ptr<ChildSaRequest> child_sa_request ) {
         // Check state
-	Log::writeLockedMessage( this->getLogId(), "Entrando en createNewChildSaRequest", Log::LOG_WARN, true );        
+	Log::writeLockedMessage( this->getLogId(), "Entrando en createNewChildSaRequest", Log::LOG_WARN, true );
 
 	if ( this->state < STATE_IKE_SA_ESTABLISHED ) {
             Log::writeLockedMessage( this->getLogId(), "Transition error: event=[Start NEW_CHILD_SA] state=[" + IKE_SA_STATE_STR( this->state ) + "]", Log::LOG_ERRO, true );
@@ -1644,16 +1644,16 @@ namespace openikev2 {
         }
         else if ( this->state == STATE_WAITING_FOR_DELETION || this->state == STATE_DELETE_IKE_SA_REQ_SENT ) {
             // Omit the command
-	Log::writeLockedMessage( this->getLogId(), "Punto 1", Log::LOG_WARN, true );        
+	Log::writeLockedMessage( this->getLogId(), "Punto 1", Log::LOG_WARN, true );
 
             return IKE_SA_ACTION_CONTINUE;
         }
         else if ( this->state > STATE_IKE_SA_ESTABLISHED ) {
-	    Log::writeLockedMessage( this->getLogId(), "Punto 2", Log::LOG_WARN, true );        
+	    Log::writeLockedMessage( this->getLogId(), "Punto 2", Log::LOG_WARN, true );
             this->pushDeferredCommand( auto_ptr<Command> ( new SendNewChildSaReqCommand( child_sa_request ) ) );
             return IKE_SA_ACTION_CONTINUE;
         }
-	Log::writeLockedMessage( this->getLogId(), "Punto 3", Log::LOG_WARN, true );        
+	Log::writeLockedMessage( this->getLogId(), "Punto 3", Log::LOG_WARN, true );
 
 
     auto_ptr<GeneralConfiguration> general_conf = Configuration::getInstance().getGeneralConfiguration();
@@ -1692,12 +1692,12 @@ namespace openikev2 {
 
 
 
-	Log::writeLockedMessage( this->getLogId(), "Punto 4", Log::LOG_WARN, true );        
+	Log::writeLockedMessage( this->getLogId(), "Punto 4", Log::LOG_WARN, true );
 
         // creates the request message
         auto_ptr<Message> message = this->createMessage( Message::CREATE_CHILD_SA, Message::REQUEST );
 
-	
+
 
 /*
  	auto_ptr<GeneralConfiguration> general_conf = Configuration::getInstance().getGeneralConfiguration();
@@ -1708,7 +1708,7 @@ namespace openikev2 {
 		is_ha = is_ha_attr->value;
 
         // TODO
-	
+
 	if ( this->mobility ) {
 
 		if (child_sa_request->mode == Enums::TUNNEL_MODE){
@@ -1720,30 +1720,30 @@ namespace openikev2 {
 				message->src_addr = this->care_of_address->clone();
 				Log::writeLockedMessage( this->getLogId(), "Punto 1", Log::LOG_WARN, true );
 			}
-		}			
-			
+		}
+
 	}
 
 */
-	Log::writeLockedMessage( this->getLogId(), "Punto 5", Log::LOG_WARN, true );        
+	Log::writeLockedMessage( this->getLogId(), "Punto 5", Log::LOG_WARN, true );
 
 
         // include notify payloads (N)
         NetworkController::addNotifies( *message, *this, this->my_creating_child_sa.get() );
 
-	Log::writeLockedMessage( this->getLogId(), "Punto 6", Log::LOG_WARN, true );        
+	Log::writeLockedMessage( this->getLogId(), "Punto 6", Log::LOG_WARN, true );
 
 
         // include the CHILD_SA negotiation request payloads (SA, [KE], NONCE, TSi, TSr)
         this->createChildSaNegotiationRequest( *message );
 
-	Log::writeLockedMessage( this->getLogId(), "Punto 7", Log::LOG_WARN, true );        
+	Log::writeLockedMessage( this->getLogId(), "Punto 7", Log::LOG_WARN, true );
 
 
         // sends the message
         this->sendMessage( message, "Send: NEW_CHILD_SA request" );
 
-	Log::writeLockedMessage( this->getLogId(), "Punto 8", Log::LOG_WARN, true );        
+	Log::writeLockedMessage( this->getLogId(), "Punto 8", Log::LOG_WARN, true );
 
 
         // updates IKE_SA state
@@ -2859,7 +2859,7 @@ namespace openikev2 {
 
 	    IkeSa::MESSAGE_ACTION action = MESSAGE_ACTION_COMMIT;
 
-            
+
             if ( this->mobility ) {
                 Payload_NOTIFY* payload_notify = ( Payload_NOTIFY* ) message.getFirstPayloadByType( Payload::PAYLOAD_NOTIFY );
 
@@ -2871,34 +2871,34 @@ namespace openikev2 {
                     auto_ptr<IpAddress> addr = NetworkController::getIpAddress( string_attr->value );
                     hoa = NetworkController::getSocketAddress(addr,500) ;
                 }*/
-                
-                
+
+
                 if (( message.exchange_type == Message::CREATE_CHILD_SA ) && (payload_notify!=NULL) ){
                     Log::writeLockedMessage( "NetworkController", "Mobility: Changing CoA to HoA in received message in a second chance.", Log::LOG_WARN, true );
-                    if ( ! this->is_ha ){ 
-                        Log::writeLockedMessage( "NetworkController", "Mobility: Let's Changing CoA to HoA in MR .", Log::LOG_WARN, true );        
+                    if ( ! this->is_ha ){
+                        Log::writeLockedMessage( "NetworkController", "Mobility: Let's Changing CoA to HoA in MR .", Log::LOG_WARN, true );
                         this->care_of_address = message.dst_addr->clone();
-                        Log::writeLockedMessage( "NetworkController", "Mobility: ------- .", Log::LOG_WARN, true );            
+                        Log::writeLockedMessage( "NetworkController", "Mobility: ------- .", Log::LOG_WARN, true );
 
-                        message.dst_addr = this->home_address->clone();       
-                        Log::writeLockedMessage( "NetworkController", "Mobility: CoA to HoA in MR  changed.", Log::LOG_WARN, true );        
-                    }       
-                    else {      
-                        Log::writeLockedMessage( "NetworkController", "Mobility: Let's Changing CoA to HoA in HA .", Log::LOG_WARN, true );            
+                        message.dst_addr = this->home_address->clone();
+                        Log::writeLockedMessage( "NetworkController", "Mobility: CoA to HoA in MR  changed.", Log::LOG_WARN, true );
+                    }
+                    else {
+                        Log::writeLockedMessage( "NetworkController", "Mobility: Let's Changing CoA to HoA in HA .", Log::LOG_WARN, true );
                         this->care_of_address = message.src_addr->clone();
-                        Log::writeLockedMessage( "NetworkController", "Mobility: ------- .", Log::LOG_WARN, true );            
+                        Log::writeLockedMessage( "NetworkController", "Mobility: ------- .", Log::LOG_WARN, true );
                         Log::writeLockedMessage( "NetworkController", "CoA: ." + this->care_of_address->toStringTab(0), Log::LOG_WARN, true );
-                        
-                        message.src_addr = this->home_address->clone(); 
-                        Log::writeLockedMessage( "NetworkController", "Mobility: CoA to HoA in MR  changed.", Log::LOG_WARN, true );              
+
+                        message.src_addr = this->home_address->clone();
+                        Log::writeLockedMessage( "NetworkController", "Mobility: CoA to HoA in MR  changed.", Log::LOG_WARN, true );
                         Log::writeLockedMessage( "NetworkController", "Source: ." + message.src_addr->toStringTab(0), Log::LOG_WARN, true );
                     }
                 }
                 else {
                    Log::writeLockedMessage( "NetworkController", "Mobility: NOT CHANGING CoA for HoA in a second chance.", Log::LOG_WARN, true );
                 }
-            }       
-            
+            }
+
 
             // IKE_SA_INIT request
             if ( message.exchange_type == Message::IKE_SA_INIT && message.message_type == Message::REQUEST )
@@ -2940,7 +2940,7 @@ namespace openikev2 {
             else if ( action == MESSAGE_ACTION_DELETE_IKE_SA ){
                 cout << "******** el procesamiento de un mensaje produjo la accion delete IKE_SA" << endl;
 		return IKE_SA_ACTION_DELETE_IKE_SA;
-	    } 
+	    }
             // IF ACTION  is CONTINUE, then do the following
 
             // If we are initiators
@@ -3114,7 +3114,7 @@ namespace openikev2 {
 
         // includes the security association payload (SA)
         // set spi value into proposal
-        
+
 	//uint32_t spi = IpsecController::getSpi(this->my_addr->getIpAddress(),this->peer_addr->getIpAddress(),this->my_creating_child_sa->ipsec_protocol);
         //this->my_creating_child_sa->inbound_spi = spi;
         //this->my_creating_child_sa->getProposal().setIpsecSpi( spi );
@@ -3243,7 +3243,7 @@ namespace openikev2 {
     IkeSa::NEGOTIATION_ACTION IkeSa::processChildSaNegotiationRequest( Message & message ) {
 	// update policies, in case they have changed
 
-	IpsecController::updatePolicies(true);        
+	IpsecController::updatePolicies(true);
 
 	// updates the CHILD_SA configuration
         this->peer_creating_child_sa->setChildSaConfiguration( this->getChildSaConfiguration().clone() );
@@ -3256,7 +3256,7 @@ namespace openikev2 {
 	auto_ptr<GeneralConfiguration> general_conf = Configuration::getInstance().getGeneralConfiguration();
 
     	BoolAttribute* mobility_attr = general_conf->attributemap->getAttribute<BoolAttribute>( "mobility" );
-    	bool mobility = false; 
+    	bool mobility = false;
 
         BoolAttribute* is_ha_attr = general_conf->attributemap->getAttribute<BoolAttribute>( "is_ha" );
         bool is_ha = false;
@@ -3274,22 +3274,22 @@ namespace openikev2 {
 		if (string_attr!=NULL ){
 	    		auto_ptr<IpAddress> addr (NetworkController::getIpAddress(string_attr->value ));
 			hoa = NetworkController::getSocketAddress (addr,500);
-		*/	
+		*/
 	                Payload_NOTIFY* payload_notify = ( Payload_NOTIFY* ) message.getFirstPayloadByType( Payload::PAYLOAD_NOTIFY );
 
 
 			if (!((message.exchange_type == Message::CREATE_CHILD_SA)&&(payload_notify==NULL))){
 				Log::writeLockedMessage( "NetworkController", "Mobility: Changing CoA to HoA in received message.", Log::LOG_WARN, true );
 				Log::writeLockedMessage( "NetworkController", "Mobility: TRANSPORT MODE.", Log::LOG_WARN, true );
-				if ( is_ha ){			
+				if ( is_ha ){
 				       coa = message.dst_addr->clone();
-				       message.dst_addr = this->home_address->clone();			                        }		
-				else {			
+				       message.dst_addr = this->home_address->clone();			                        }
+				else {
 				       coa = message.src_addr->clone();
-				       message.src_addr = this->home_address->clone();		
+				       message.src_addr = this->home_address->clone();
 	                        }
 			}
-		/*}*/    	
+		/*}*/
 	}
 
 
@@ -3297,7 +3297,7 @@ namespace openikev2 {
 
 
 
-	
+
 
         // process configuration payload (CP)
         IkeSa::NEGOTIATION_ACTION negotiation_action = NetworkController::processConfigurationRequest( message, *this );

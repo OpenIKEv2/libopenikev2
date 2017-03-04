@@ -1,7 +1,7 @@
 /***************************************************************************
  *   Copyright (C) 2005 by                                                 *
- *   Alejandro Perez Mendez     alejandro_perez@dif.um.es                  *
- *   Pedro J. Fernandez Ruiz    pedroj.fernandez@dif.um.es                 *
+ *   Alejandro Perez Mendez     alex@um.es                                 *
+ *   Pedro J. Fernandez Ruiz    pedroj@um.es                               *
  *                                                                         *
  *   This library is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU Lesser General Public            *
@@ -31,7 +31,7 @@
 namespace openikev2 {
     /**
         This class represents an EAP packet
-        @author Alejandro Perez Mendez, Pedro J. Fernandez Ruiz <alejandro_perez@dif.um.es, pedroj.fernandez@dif.um.es>
+        @author Alejandro Perez Mendez, Pedro J. Fernandez Ruiz <alex@um.es, pedroj@um.es>
     */
     class EapPacket : public Printable {
 
@@ -102,7 +102,7 @@ namespace openikev2 {
             uint8_t identifier;                 /**< EAP message identifier */
             EAP_TYPE eap_type;                  /**< EAP message type */
             auto_ptr<ByteArray> eap_type_data;  /**< EAP message type data */
-    
+
         public:
             /**
              * Creates a new EapPacket containing a REQUEST/RESPONSE

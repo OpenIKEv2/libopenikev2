@@ -1,7 +1,7 @@
 /***************************************************************************
 *   Copyright (C) 2005 by                                                 *
-*   Pedro J. Fernandez Ruiz    pedroj.fernandez@dif.um.es                 *
-*   Alejandro Perez Mendez     alejandro_perez@dif.um.es                  *
+*   Pedro J. Fernandez Ruiz    pedroj@um.es                               *
+*   Alejandro Perez Mendez     alex@um.es                                 *
 *                                                                         *
 *   This library is free software; you can redistribute it and/or         *
 *   modify it under the terms of the GNU Lesser General Public            *
@@ -82,7 +82,7 @@ namespace openikev2 {
     void NetworkControllerImpl::addNotifies( Message& message, IkeSa& ike_sa, ChildSa* child_sa ) {
         // for all the notify controllers, adds the request to the message
         for ( map<uint16_t, NotifyController*>::iterator it = this->notify_controllers.begin(); it != this->notify_controllers.end(); it++ ){
-            ( *it ).second->addNotify( message, ike_sa, child_sa );            
+            ( *it ).second->addNotify( message, ike_sa, child_sa );
         }
     }
 }

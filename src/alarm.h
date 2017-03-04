@@ -1,7 +1,7 @@
 /***************************************************************************
 *   Copyright (C) 2005 by                                                 *
-*   Pedro J. Fernandez Ruiz    pedroj.fernandez@dif.um.es                 *
-*   Alejandro Perez Mendez     alejandro_perez@dif.um.es                  *
+*   Pedro J. Fernandez Ruiz    pedroj@um.es                               *
+*   Alejandro Perez Mendez     alex@um.es                                 *
 *                                                                         *
 *   This library is free software; you can redistribute it and/or         *
 *   modify it under the terms of the GNU Lesser General Public            *
@@ -37,7 +37,7 @@ namespace openikev2 {
 
     /**
         This class represents an Alarm used to receive programmed events.
-        @author Pedro J. Fernandez Ruiz, Alejandro Perez Mendez <pedroj.fernandez@dif.um.es, alejandro_perez@dif.um.es>
+        @author Pedro J. Fernandez Ruiz, Alejandro Perez Mendez <pedroj@um.es, alex@um.es>
     */
     class Alarm {
             /****************************** ATTRIBUTES ******************************/
@@ -47,7 +47,7 @@ namespace openikev2 {
             int64_t msec_total;         /**< Total time of the Alarm (in milliseconds).This time is used when the Alarm is reseted */
             int64_t msec_left;          /**< Remainig time of the Alarm (in milliseconds) */
             auto_ptr<Mutex> mutex;      /**< Mutex used to protect Alarm accesses */
-        
+
             /****************************** METHODS ******************************/
         public:
             /**
@@ -78,18 +78,18 @@ namespace openikev2 {
              * @return The total time of the Alarm (in milliseconds)
              */
             virtual uint32_t getTotalTime() const;
-        
+
             /**
              * Notifies alarm timeout to the receiver of the event.
              */
             virtual void notifyAlarmable();
-            
+
             /**
              * Returns an string representing this Alarm
              * @return An string representing this Alarm
              */
             virtual string getLogId();
-            
+
             /**
              * Deletes alarm.
              */

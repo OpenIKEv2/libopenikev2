@@ -1,7 +1,7 @@
 /***************************************************************************
  *   Copyright (C) 2005 by                                                 *
- *   Pedro J. Fernandez Ruiz    pedroj.fernandez@dif.um.es                 *
- *   Alejandro Perez Mendez     alejandro_perez@dif.um.es                  *
+ *   Pedro J. Fernandez Ruiz    pedroj@um.es                               *
+ *   Alejandro Perez Mendez     alex@um.es                                 *
  *                                                                         *
  *   This library is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU Lesser General Public            *
@@ -38,7 +38,7 @@ using namespace std;
 namespace openikev2 {
     /**
         This class represents an IKE SA configuration
-        @author Pedro J. Fernandez Ruiz, Alejandro Perez Mendez <pedroj.fernandez@dif.um.es, alejandro_perez@dif.um.es>
+        @author Pedro J. Fernandez Ruiz, Alejandro Perez Mendez <pedroj@um.es, alex@um.es>
     */
     class IkeSaConfiguration : public Printable {
 
@@ -46,7 +46,7 @@ namespace openikev2 {
         protected:
             auto_ptr<Proposal> proposal;                            /**< IKE proposal for this IKE SA */
             AutoVector<IdTemplate> allowed_ids;                     /**< Collection of allowed IDs */
-            
+
         public:
             auto_ptr<ID> my_id;                                     /**< ID to be used with this IKE SA */
             uint32_t max_idle_time;                                 /**< Maximun idle time without any exchange */
@@ -59,7 +59,7 @@ namespace openikev2 {
             string aaa_server_addr;
             uint16_t aaa_server_port;
             string aaa_server_secret;
-            
+
             /****************************** METHODS ******************************/
         public:
             /**
@@ -70,10 +70,10 @@ namespace openikev2 {
 
             /**
              * Adds an allowed ID
-             * @param id_template Allowed ID template 
+             * @param id_template Allowed ID template
              */
             virtual void addAllowedId(auto_ptr<IdTemplate> id_template);
-            
+
             /**
              * Creates a clone of this IkeSaConfiguration object
              * @return A new IkeSaConfiguration object
@@ -97,7 +97,7 @@ namespace openikev2 {
              * @return A reference to the authenticator
              */
             virtual Authenticator& getAuthenticator();
-            
+
             /**
              * Checks if the ID is allowed for this configuration
              * @param id ID to be checked

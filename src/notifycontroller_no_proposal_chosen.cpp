@@ -1,7 +1,7 @@
 /***************************************************************************
 *   Copyright (C) 2005 by                                                 *
-*   Pedro J. Fernandez Ruiz    pedroj.fernandez@dif.um.es                 *
-*   Alejandro Perez Mendez     alejandro_perez@dif.um.es                  *
+*   Pedro J. Fernandez Ruiz    pedroj@um.es                               *
+*   Alejandro Perez Mendez     alex@um.es                                 *
 *                                                                         *
 *   This library is free software; you can redistribute it and/or         *
 *   modify it under the terms of the GNU Lesser General Public            *
@@ -42,7 +42,7 @@ namespace openikev2 {
             Log::writeLockedMessage( ike_sa.getLogId(), "NO_PROPOSAL_CHOSEN notify in wrong exchange.", Log::LOG_ERRO, true );
             return IkeSa::NOTIFY_ACTION_ERROR;
         }
-        
+
         // Check notify field correction
         if ( notify.protocol_id > Enums::PROTO_IKE || notify.spi_value.get() != NULL || notify.notification_data.get() != NULL ){
             Log::writeLockedMessage( ike_sa.getLogId(), "INVALID SYNTAX in NO_PROPOSAL_CHOSEN notify.", Log::LOG_ERRO, true );

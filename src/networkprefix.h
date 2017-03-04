@@ -1,7 +1,7 @@
 /***************************************************************************
  *   Copyright (C) 2005 by                                                 *
- *   Alejandro Perez Mendez     alejandro_perez@dif.um.es                  *
- *   Pedro J. Fernandez Ruiz    pedroj.fernandez@dif.um.es                 *
+ *   Alejandro Perez Mendez     alex@um.es                                 *
+ *   Pedro J. Fernandez Ruiz    pedroj@um.es                               *
  *                                                                         *
  *   This library is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU Lesser General Public            *
@@ -28,7 +28,7 @@ namespace openikev2 {
 
     /**
      This class represents a Network prefix, composed by an network address and a prefix size
-     @author Alejandro Perez Mendez, Pedro J. Fernandez Ruiz <alejandro_perez@dif.um.es, pedroj.fernandez@dif.um.es>
+     @author Alejandro Perez Mendez, Pedro J. Fernandez Ruiz <alex@um.es, pedroj@um.es>
     */
     class NetworkPrefix : public Attribute {
             /****************************** ATTRIBUTES ******************************/
@@ -82,14 +82,14 @@ namespace openikev2 {
              * @return The mask of the network
              */
             static auto_ptr<ByteArray> getMask(uint16_t prefixlen, uint16_t mask_size);
-            
+
             /**
              * Obtains the prefix length of the indicated mask
              * @param mask Mask
              * @return The prefix length
              */
             static uint16_t getPrefixLen(const ByteArray& mask);
-            
+
             /**
             * Returns a clone of this object
             * @return A clone of this object
@@ -102,7 +102,7 @@ namespace openikev2 {
             * @return TRUE if both are equals, FALSE otherwise
             */
             virtual bool operator==( const NetworkPrefix &other ) const;
-            
+
             /**
             * Indicates if the IpAddress is contained in the network prefix.
             * @param ip_address IpAddress to be checked

@@ -1,7 +1,7 @@
 /***************************************************************************
  *   Copyright (C) 2005 by                                                 *
- *   Alejandro Perez Mendez     alejandro_perez@dif.um.es                  *
- *   Pedro J. Fernandez Ruiz    pedroj.fernandez@dif.um.es                 *
+ *   Alejandro Perez Mendez     alex@um.es                                 *
+ *   Pedro J. Fernandez Ruiz    pedroj@um.es                               *
  *                                                                         *
  *   This library is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU Lesser General Public            *
@@ -27,7 +27,7 @@ namespace openikev2 {
 
     /**
     This abstract class represents a socket address (IP address and port number).
-     @author Alejandro Perez Mendez, Pedro J. Fernandez Ruiz <alejandro_perez@dif.um.es, pedroj.fernandez@dif.um.es>
+     @author Alejandro Perez Mendez, Pedro J. Fernandez Ruiz <alex@um.es, pedroj@um.es>
     */
     class SocketAddress: public Printable {
             /****************************** METHODS ******************************/
@@ -38,7 +38,7 @@ namespace openikev2 {
             * @return TRUE if both are equals, FALSE otherwise
             */
             virtual bool operator==( const SocketAddress &other ) const;
-            
+
             /**
             * Gets the IP address
             * @return The IP address
@@ -62,7 +62,7 @@ namespace openikev2 {
              * @param port New port number
              */
             virtual void setPort( uint16_t port ) = 0;
-            
+
             /**
             * Creates a new SocketAddress object cloning this.
             * @return The new IPaddress object.
