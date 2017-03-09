@@ -68,7 +68,7 @@ namespace openikev2 {
 
         // Size must be at least size of fixed header
         if ( payload_length < 20 || payload_length > 260 )
-            throw ParsingException( "Payload_KE length cannot be < 20 bytes nor > 260." );
+            throw ParsingException( "Payload_NONCE length cannot be < 20 bytes nor > 260." );
 
         // reads nonce value
         auto_ptr<ByteArray> nonce = byte_buffer.readByteArray( payload_length - 4 );
