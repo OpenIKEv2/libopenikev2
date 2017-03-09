@@ -184,7 +184,8 @@ namespace openikev2 {
             throw ParsingException( "Message has more data than needed. Found premature next_payload=0" );
 
         // if there isn't more data and the next_payload is not 0 and the last payload is not an payload_sk, then report error
-        if ( byte_buffer.size() == 0 && current_payload_type != Payload::PAYLOAD_NONE && payloads.back()->type != Payload::PAYLOAD_SK )
+        if ( byte_buffer.size() == 0 && current_payload_type != Payload::PAYLOAD_NONE && payloads.size() > 0 && 
+                payloads.back()->type != Payload::PAYLOAD_SK )
             throw ParsingException( "Message must end with next_payload=0 or next_payload=PAYLOAD_SK" );
 
         // return the next payload type of the last fixed payload header
