@@ -518,7 +518,6 @@ namespace openikev2 {
     IkeSa::NOTIFY_ACTION IkeSa::processNotifies( Message & message, ChildSa* child_sa ) {
         // Updates PEER VENDOR ID INFORMATION
         Payload_VENDOR * payload_vendor = ( Payload_VENDOR* ) message.getFirstPayloadByType( Payload::PAYLOAD_VENDOR );
-        Log::writeLockedMessage( this->getLogId(), "****** 9 ", Log::LOG_ERRO, true );
 
         if ( payload_vendor != NULL ) {
             this->peer_vendor_id = payload_vendor->getVendorId().clone();
@@ -526,39 +525,19 @@ namespace openikev2 {
             Log::writeMessage( this->getLogId(), Printable::generateTabs( 1 ) + this->peer_vendor_id->toStringTab( 1 ), Log::LOG_INFO, false );
         }
 
-        Log::writeLockedMessage( this->getLogId(), "***** 10 ", Log::LOG_ERRO, true );
-
-
         // Gets all notifies in the message
         vector<Payload*> notifies = message.getPayloadsByType( Payload::PAYLOAD_NOTIFY );
-
-        Log::writeLockedMessage( this->getLogId(), "***** 11 ", Log::LOG_ERRO, true );
-
 
         // For each notify in the message do
         for ( vector<Payload*>::iterator it = notifies.begin(); it != notifies.end(); it++ ) {
             // Gets current notify
             Payload_NOTIFY *notify = ( Payload_NOTIFY* ) ( *it );
 
-        Log::writeLockedMessage( this->getLogId(), "***** 12 ", Log::LOG_ERRO, true );
-
-
             // get the notify controller
             NotifyController* notify_controller = NetworkController::getNotifyController( notify->notification_type );
 
             // If exists notify controller for that notify type
             if ( notify_controller != NULL ) {
-        Log::writeLockedMessage( this->getLogId(), "***** 13 ", Log::LOG_ERRO, true );
-
-		if (notify == NULL)
-        		Log::writeLockedMessage( this->getLogId(), "***** 13 A ", Log::LOG_ERRO, true );
-		else if (child_sa == NULL)
-			Log::writeLockedMessage( this->getLogId(), "***** 13 B ", Log::LOG_ERRO, true );
-
-			Log::writeLockedMessage( this->getLogId(), "***** 13 C  "+ message.toStringTab(0), Log::LOG_ERRO, true );
-			Log::writeLockedMessage( this->getLogId(), "***** 13 D  "+ notify->toStringTab(0), Log::LOG_ERRO, true );
-
-
                 NOTIFY_ACTION action = notify_controller->processNotify( *notify, message, *this, child_sa );
                 if ( action != NOTIFY_ACTION_CONTINUE )
                     return action;
@@ -566,8 +545,6 @@ namespace openikev2 {
 
             // if doesn't exist notify controller for the notification type
             else {
-        Log::writeLockedMessage( this->getLogId(), "***** 14 ", Log::LOG_ERRO, true );
-
                 // If an unknown notify is received
                 if ( notify->isError() ) {
                     // We don't allow ERROR notifies in REQUESTs
@@ -1078,22 +1055,10 @@ namespace openikev2 {
         Log::writeMessage( this->getLogId(), message.toStringTab( 1 ), Log::LOG_MESG, false );
         Log::release();
 
-        Log::writeLockedMessage( this->getLogId(), "***** 1", Log::LOG_ERRO, true );
-
-
 	// update policies, in case they have changed
-
 	IpsecController::updatePolicies(false);
-
-        Log::writeLockedMessage( this->getLogId(), "***** 2", Log::LOG_ERRO, true );
-
-
         Payload_SA& payload_sa = ( Payload_SA& ) message.getUniquePayloadByType( Payload::PAYLOAD_SA );
-        Log::writeLockedMessage( this->getLogId(), "***** 3", Log::LOG_ERRO, true );
-
 	Proposal *proposal_sa = payload_sa.proposals->front() ;
-        Log::writeLockedMessage( this->getLogId(), "***** 4", Log::LOG_ERRO, true );
-
 	Enums::PROTOCOL_ID peer_selected_ipsec_proto = Enums::PROTO_NONE;
 	if ( proposal_sa != NULL )
 		peer_selected_ipsec_proto = proposal_sa->protocol_id;
@@ -1101,9 +1066,6 @@ namespace openikev2 {
 
         // creates the CHILD_SA
         this->peer_creating_child_sa.reset( new ChildSa( IpsecController::getSpi(this->peer_addr->getIpAddress(),this->my_addr->getIpAddress(), peer_selected_ipsec_proto), peer_selected_ipsec_proto, false ) );
-
-
-        Log::writeLockedMessage( this->getLogId(), "***** 5", Log::LOG_ERRO, true );
 
         // process notify payloads (N) and vendor payloads (V)
         NOTIFY_ACTION action = this->processNotifies( message, this->peer_creating_child_sa.get() );
@@ -1113,9 +1075,6 @@ namespace openikev2 {
         }
         else if ( action == NOTIFY_ACTION_OMIT )
             return MESSAGE_ACTION_OMIT;
-
-        Log::writeLockedMessage( this->getLogId(), "***** 6", Log::LOG_ERRO, true );
-
 
         // process identity payload (IDi)
         Payload_IDi& payload_id_i = ( Payload_IDi& ) message.getUniquePayloadByType( Payload::PAYLOAD_IDi );
