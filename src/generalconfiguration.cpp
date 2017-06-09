@@ -29,6 +29,7 @@ namespace openikev2 {
         this->cookie_lifetime = 0xFFFF;
         this->ike_max_halfopen_time = 0xFFFF;
         this->attributemap.reset ( new AttributeMap() );
+        this->radvd_enabled = false;
     }
 
     GeneralConfiguration::~GeneralConfiguration() {  }

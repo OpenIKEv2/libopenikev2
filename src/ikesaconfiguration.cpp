@@ -38,6 +38,7 @@ namespace openikev2 {
         this->retransmition_factor = 2;
         this->rekey_time = 0xFFFF;
         this->ike_max_exchange_retransmitions = 3;
+        this->aaa_server_port = 0;
 
         this->attributemap.reset( new AttributeMap() );
     }

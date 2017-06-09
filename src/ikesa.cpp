@@ -2893,7 +2893,7 @@ namespace openikev2 {
             // If we are responders
             else
                 this->peer_message_id++;
-
+            return action;
         }
         catch ( Exception & ex ) {
             // If message is a response, then

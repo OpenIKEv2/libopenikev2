@@ -26,6 +26,7 @@ namespace openikev2 {
             : ike_sa ( ike_sa ) {
         this->type = BusEvent::IKE_SA_EVENT;
         this->ike_sa_event_type = ike_sa_event_type;
+        this->data = NULL;
     }
 
     BusEventIkeSa::BusEventIkeSa( IKE_SA_EVENT_TYPE ike_sa_event_type, IkeSa & ike_sa, void * data )

@@ -28,8 +28,6 @@
 namespace openikev2 {
 
     Alarm::Alarm( Alarmable &alarmable, uint32_t msec_total ) : alarmable( alarmable ) {
-        assert( msec_total >= 0 );
-
         this->msec_total = msec_total;
         this->msec_left = msec_total;
         this->enabled = false;

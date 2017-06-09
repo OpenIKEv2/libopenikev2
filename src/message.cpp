@@ -41,6 +41,7 @@ namespace openikev2 {
         this->message_id = message_id;
 
         this->first_payload_type = Payload::PAYLOAD_NONE;
+        this->first_payload_type_sk = Payload::PAYLOAD_NONE;
     }
 
     Message::Message( auto_ptr<SocketAddress> src_addr, auto_ptr<SocketAddress> dst_addr, ByteBuffer& byte_buffer ) {

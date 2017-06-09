@@ -49,7 +49,6 @@ namespace openikev2 {
 
     ByteArray::ByteArray( const void * array, uint32_t size, uint32_t capacity, bool owns_memory ) {
         assert ( array != NULL );
-        assert ( capacity >= 0 );
 
         if ( capacity == 0)
             capacity = size + 1;

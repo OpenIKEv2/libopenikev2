@@ -36,12 +36,12 @@ namespace openikev2 {
 
     IpAddress* NetworkController::getCurrentCoA(){
         assert ( implementation != NULL );
-        implementation->getCurrentCoA();
+        return implementation->getCurrentCoA();
     }
 
     IpAddress* NetworkController::getHoAbyCoA(const IpAddress& current_coa){
         assert ( implementation != NULL );
-        implementation->getHoAbyCoA(current_coa);
+        return implementation->getHoAbyCoA(current_coa);
     }
 
     auto_ptr<IpAddress> NetworkController::getIpAddress( Enums::ADDR_FAMILY family, auto_ptr<ByteArray> data ) {

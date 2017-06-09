@@ -26,6 +26,7 @@ namespace openikev2 {
             : ike_sa( ike_sa ), child_sa ( child_sa ) {
         this->type = BusEvent::CHILD_SA_EVENT;
         this->child_sa_event_type = child_sa_event_type;
+        this->data = NULL;
     }
 
     BusEventChildSa::BusEventChildSa( CHILD_SA_EVENT_TYPE child_sa_event_type, IkeSa & ike_sa, ChildSa & child_sa, void* data )
